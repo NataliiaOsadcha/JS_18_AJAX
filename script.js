@@ -22,7 +22,7 @@ fetch('http://api.openweathermap.org/data/2.5/weather?q=KYIV&units=metric&APPID=
     <p>Humidity: ${humidity} %</p>
     <p>Wind Speed: ${speed} m/s</p>
     <p>Wind Direction: ${deg} °</p>
-    <img scr="http://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
+    <img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
     `;
     
     weatherInfoDiv.innerHTML = weatherInfoHtml;
