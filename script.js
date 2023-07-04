@@ -1,5 +1,5 @@
 const weatherInfoDiv = document.getElementById('weather-info');
-console.log(weatherInfoDiv);
+const weatherIconDiv = document.getElementById('weather-icon');
 
 fetch('http://api.openweathermap.org/data/2.5/weather?q=KYIV&units=metric&APPID=5d066958a60d315387d9492393935c19')
 .then(response => {
@@ -16,16 +16,42 @@ fetch('http://api.openweathermap.org/data/2.5/weather?q=KYIV&units=metric&APPID=
     const deg = data.wind.deg;
     const icon = data.weather[0].icon;
 
-    let weatherInfoHtml =` 
-    <p>Temperature: ${temperature} °C</p>
-    <p>Description: ${description}</p>
-    <p>Humidity: ${humidity} %</p>
-    <p>Wind Speed: ${speed} m/s</p>
-    <p>Wind Direction: ${deg} °</p>
-    <img src="http://openweathermap.org/img/w/${icon}.png" alt="Weather Icon">
-    `;
-    
-    weatherInfoDiv.innerHTML = weatherInfoHtml;
+
+    const temperatureParagraph = document.createElement('p');
+    temperatureParagraph.textContent = `Temperature: ${temperature} °C`;
+
+    const pressureParagraph = document.createElement('p');
+    pressureParagraph.textContent = `Pressure: ${pressure} hPa`;
+
+    const descriptionParagraph = document.createElement('p');
+    descriptionParagraph.textContent = `Description: ${description}`;
+
+    const humidityParagraph = document.createElement('p');
+    humidityParagraph.textContent = `Humidity: ${humidity} %`;
+
+    const speedParagraph = document.createElement('p');
+    speedParagraph.textContent = `Wind Speed: ${speed} m/s`;
+
+    const degParagraph = document.createElement('p');
+    degParagraph.textContent = `Wind Direction: ${deg} °`;
+
+    const iconImage  = document.createElement('img');
+    iconImage.src = `http://openweathermap.org/img/w/${icon}.png`;
+    iconImage.alt = 'Weather Icon';
+    iconImage.classList.add("icon-style");
+
+
+
+
+
+    weatherInfoDiv.appendChild(temperatureParagraph);
+    weatherInfoDiv.appendChild(pressureParagraph);
+    weatherInfoDiv.appendChild(descriptionParagraph);
+    weatherInfoDiv.appendChild(humidityParagraph);
+    weatherInfoDiv.appendChild(speedParagraph);
+    weatherInfoDiv.appendChild(degParagraph);
+    weatherIconDiv.appendChild(iconImage);
+
 })
 
 .catch(error => {
